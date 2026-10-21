@@ -70,6 +70,22 @@ window.PROJECTS = [
     featured: true,
   },
   {
+    title: "Building Cluster Intelligence",
+    tagline: "AI-powered clustering for last-mile delivery",
+    description:
+      "Built on the GlobalBuildingAtlas (2.75B buildings), this platform applies machine learning to massive geospatial data to turn manual delivery planning into automated, data-driven distribution, scalable to any city worldwide.",
+    highlights: [
+      "40% faster delivery cycles and 30% savings in operating costs",
+      "K-Means, grid-based and hybrid clustering with quality metrics (compactness, balance, size consistency)",
+      "15K+ buildings clustered into 128 territories in about a second",
+      "Real-time 3D territory management",
+    ],
+    tech: ["Machine Learning", "K-Means", "ArcGIS Maps SDK", "Logistics", "Big Data"],
+    images: ["assets/projects/cluster/building-cluster-intelligence.jpg"],
+    links: {},
+    featured: true,
+  },
+  {
     title: "OnePin",
     tagline: "Global building identification mobile app",
     description:
