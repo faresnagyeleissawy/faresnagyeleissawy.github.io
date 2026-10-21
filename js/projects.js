@@ -158,9 +158,15 @@ window.PROJECTS = [
     tagline: "Public GIS app for the Eastern Province Municipality",
     description:
       "Upgraded the Amanah's public mobile GIS app for iOS and Android within a two-month timeline. 50,000+ downloads on Google Play.",
-    highlights: [],
+    highlights: [
+      "Map control and printing: rotate the map, locate places and save maps for print",
+      "Smart assistant chat that guides users through the municipality's digital GIS services",
+    ],
     tech: ["ArcGIS JS API 3.x", "Mobile", "Web GIS"],
-    images: [],
+    images: [
+      "assets/projects/madinati/map-control.png",
+      "assets/projects/madinati/smart-assistant.png",
+    ],
     links: {
       live: "https://play.google.com/store/apps/details?id=com.eamana.webgis",
     },
