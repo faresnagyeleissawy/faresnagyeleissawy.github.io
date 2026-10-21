@@ -11,7 +11,7 @@
  *   images      Screenshots, e.g. ["assets/projects/onepin/1.png"] (optional).
  *               The first image is the card cover; clicking the card opens all of them large.
  *   videos      Videos shown before the screenshots (optional): an .mp4 file, e.g.
- *               ["assets/projects/onepin/demo.mp4"], or a YouTube / Vimeo link.
+ *               ["assets/projects/onepin/demo.mp4"], or a YouTube / Vimeo / Google Drive link.
  *   links       { live: "https://...", code: "https://..." } (optional)
  *   featured    true to show a "Featured" badge (optional)
  */
@@ -64,6 +64,7 @@ window.PROJECTS = [
       "Search (Nominatim / Photon), road routing (OSRM) and live ADS-B air traffic",
     ],
     tech: ["CesiumJS", "JavaScript", "GLSL", "PWA", "OSM"],
+    videos: ["https://drive.google.com/file/d/1i0Vq5b-9bGN9Y9FwIU-Nwhj-TU3-lWt_/view"],
     images: [
       "assets/projects/aircraft/pyramids-helicopter.jpg",
       "assets/projects/aircraft/alexandria-satellite.jpg",

@@ -121,6 +121,8 @@
   function embedUrl(src) {
     let m = src.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
     if (m) return `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0`;
+    m = src.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+    if (m) return `https://drive.google.com/file/d/${m[1]}/preview`;
     m = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
     if (m) return `https://player.vimeo.com/video/${m[1]}?autoplay=1`;
     return null;
