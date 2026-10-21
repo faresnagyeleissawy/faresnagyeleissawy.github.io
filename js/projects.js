@@ -199,7 +199,7 @@ window.PROJECTS = [
       "Esri Web AppBuilder dashboard for SDG-aligned renewable energy indicators, backed by secure ASP.NET Web APIs with identity authentication.",
     highlights: [],
     tech: ["Web AppBuilder", "ASP.NET", "Dashboards"],
-    images: [],
+    images: ["assets/projects/sdg/sdg-goals.png"],
     links: {},
   },
 ];
