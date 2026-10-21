@@ -20,7 +20,7 @@ Static personal portfolio (plain HTML/CSS/JS, no build step), hosted on GitHub P
 }
 ```
 
-The first image becomes the card cover; clicking it opens all screenshots in a viewer.
+The first image becomes the card cover; clicking the card opens a larger view with all screenshots and details.
 Projects without images show a placeholder.
 
 ## Run locally

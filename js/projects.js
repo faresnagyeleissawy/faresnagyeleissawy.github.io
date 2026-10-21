@@ -9,7 +9,7 @@
  *   highlights  Bullet points (optional)
  *   tech        Tags shown as chips (optional)
  *   images      Screenshots, e.g. ["assets/projects/onepin/1.png"] (optional).
- *               The first image is the card cover; all of them show in the gallery.
+ *               The first image is the card cover; clicking the card opens all of them large.
  *   links       { live: "https://...", code: "https://..." } (optional)
  *   featured    true to show a "Featured" badge (optional)
  */
@@ -26,7 +26,7 @@ window.PROJECTS = [
       "Time-based simulation controls to follow flood progression at any interval",
     ],
     tech: ["ArcGIS JS API 4.x", "React", "TypeScript", "Node.js", "3D"],
-    images: [],
+    images: ["assets/projects/mewa/dam-break-dashboard.jpg"],
     links: {},
     featured: true,
   },
@@ -40,7 +40,10 @@ window.PROJECTS = [
       "Email sign-in and per-user usage metering",
     ],
     tech: ["Next.js", "ArcGIS Maps SDK", "Claude API", "Postgres"],
-    images: [],
+    images: [
+      "assets/projects/geointel/dashboard.jpg",
+      "assets/projects/geointel/map-chat.jpg",
+    ],
     links: { live: "https://geointel-theta.vercel.app" },
     featured: true,
   },
@@ -55,7 +58,11 @@ window.PROJECTS = [
       "Search (Nominatim / Photon), road routing (OSRM) and live ADS-B air traffic",
     ],
     tech: ["CesiumJS", "JavaScript", "GLSL", "PWA", "OSM"],
-    images: [],
+    images: [
+      "assets/projects/aircraft/pyramids-helicopter.jpg",
+      "assets/projects/aircraft/alexandria-satellite.jpg",
+      "assets/projects/aircraft/alexandria-street-map.jpg",
+    ],
     links: {
       live: "https://faresnagyeleissawy.github.io/aircraft-global-explorer/",
       code: "https://github.com/faresnagyeleissawy/aircraft-global-explorer",
@@ -101,7 +108,10 @@ window.PROJECTS = [
       "NATO-compliant real-time geospatial application for offline tactical scenarios, plus off-road routing algorithms that improved route accuracy.",
     highlights: [],
     tech: ["Django", "Angular", "ArcGIS API", "WebSocket"],
-    images: [],
+    images: [
+      "assets/projects/itechs/field-test.jpg",
+      "assets/projects/itechs/field-station.jpg",
+    ],
     links: {},
   },
   {

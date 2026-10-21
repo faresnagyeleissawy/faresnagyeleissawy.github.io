@@ -231,13 +231,19 @@
     <div class="container">© <span id="year"></span> Fares Nagy Eleissawy</div>
   </footer>
 
-  <!-- Screenshot viewer -->
-  <div class="lightbox" id="lightbox" hidden>
-    <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
-    <button class="lb-nav prev" id="lbPrev" aria-label="Previous">‹</button>
-    <img id="lbImg" alt="" />
-    <button class="lb-nav next" id="lbNext" aria-label="Next">›</button>
-    <p class="lb-caption" id="lbCaption"></p>
+  <!-- Project viewer -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="m-close" id="mClose" aria-label="Close">✕</button>
+      <div class="m-media" id="mMedia">
+        <img id="mImg" alt="" />
+        <button class="m-nav prev" id="mPrev" aria-label="Previous image">‹</button>
+        <button class="m-nav next" id="mNext" aria-label="Next image">›</button>
+        <span class="m-count" id="mCount"></span>
+      </div>
+      <div class="m-thumbs" id="mThumbs"></div>
+      <div class="m-body" id="mBody"></div>
+    </div>
   </div>
 
   <script src="js/projects.js"></script>
