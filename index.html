@@ -11,9 +11,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
   <header class="nav">
     <div class="container nav-inner">
       <a href="#top" class="brand"><span class="pin"></span><span>Fares<span class="muted">.gis</span></span></a>
@@ -35,6 +37,7 @@
     <!-- HERO -->
     <section class="hero">
       <div class="contours" aria-hidden="true"></div>
+      <canvas class="globe" id="globe" aria-hidden="true"></canvas>
       <div class="container hero-inner">
         <p class="eyebrow mono">24.7136° N, 46.6753° E · Riyadh, KSA</p>
         <h1>Fares Nagy Eleissawy</h1>
