@@ -37,7 +37,11 @@
   function card(p, i) {
     const imgs = p.images || [];
     const vids = (p.videos || []).length;
-    const cover = imgs.length
+    const clip = p.preview || (p.videos || []).find((v) => /\.(mp4|webm|mov)(\?|$)/i.test(v));
+    const poster = p.poster || imgs[0];
+    const cover = clip
+      ? `<div class="cover has-video"><video${poster ? ` poster="${esc(poster)}"` : ""} muted loop playsinline preload="metadata" aria-label="${esc(p.title)} video preview">${[].concat(clip).map((v) => `<source src="${esc(v)}" type="video/${/\.webm/i.test(v) ? "webm" : "mp4"}" />`).join("")}</video><span class="play" aria-hidden="true">▶</span><span class="count">Video${imgs.length ? ` + ${imgs.length} images` : ""}</span></div>`
+      : imgs.length
       ? `<div class="cover"><img src="${esc(imgs[0])}" alt="${esc(p.title)} screenshot" loading="lazy" />${imgs.length > 1 ? `<span class="count">${imgs.length} images</span>` : ""}${vids ? `<span class="play" aria-hidden="true">▶</span>` : ""}</div>`
       : `<div class="cover placeholder" aria-hidden="true"><span>${esc(p.title.split(" ").map((w) => w[0]).join("").slice(0, 3))}</span></div>`;
     const hl = (p.highlights || []).length ? `<ul>${p.highlights.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>` : "";
@@ -129,6 +133,7 @@
   function render() {
     grid.innerHTML = projects
       .map((p, i) => ({ p, i }))
+      .sort((a, b) => !!(b.p.videos || []).length - !!(a.p.videos || []).length)
       .filter(({ p }) => active === "All" || (p.tech || []).includes(active))
       .map(({ p, i }) => card(p, i))
       .join("");
@@ -379,4 +384,28 @@
     size(); addEventListener("resize", size);
     requestAnimationFrame(draw);
   }
+
+  // Card video previews: play while a card is hovered or focused; on touch screens, while it is in view
+  const hoverable = matchMedia("(hover: hover)").matches;
+  const playIn = (card, on) => {
+    const v = card && card.querySelector(".cover video");
+    if (!v) return;
+    if (on && !reduce) { const p = v.play(); if (p) p.catch(() => {}); card.classList.add("playing"); }
+    else { v.pause(); card.classList.remove("playing"); }
+  };
+  grid.addEventListener("pointerover", (e) => { if (hoverable) playIn(e.target.closest(".project"), true); });
+  grid.addEventListener("pointerout", (e) => {
+    const c = e.target.closest(".project");
+    if (hoverable && c && !c.contains(e.relatedTarget)) playIn(c, false);
+  });
+  grid.addEventListener("focusin", (e) => playIn(e.target.closest(".project"), true));
+  grid.addEventListener("focusout", (e) => playIn(e.target.closest(".project"), false));
+  if (!hoverable && "IntersectionObserver" in window) {
+    const vio = new IntersectionObserver((entries) => entries.forEach((e) => playIn(e.target.closest(".project"), e.intersectionRatio > 0.6)), { threshold: [0, 0.6, 1] });
+    const watch = () => grid.querySelectorAll(".cover video").forEach((v) => vio.observe(v));
+    new MutationObserver(watch).observe(grid, { childList: true });
+    watch();
+  }
+  // Pause card previews while the project viewer is open
+  new MutationObserver(() => { if (!modal.hidden) grid.querySelectorAll(".project.playing").forEach((c) => playIn(c, false)); }).observe(modal, { attributes: true, attributeFilter: ["hidden"] });
 })();

@@ -12,6 +12,9 @@
  *               The first image is the card cover; clicking the card opens all of them large.
  *   videos      Videos shown before the screenshots (optional): an .mp4 file, e.g.
  *               ["assets/projects/onepin/demo.mp4"], or a YouTube / Vimeo / Google Drive link.
+ *   preview     Short, small muted clip (.webm and/or .mp4) that plays on the card when it is selected (optional).
+ *               Without it, the first .mp4 in videos is used.
+ *   poster      Image shown on the card before the preview plays (optional).
  *   links       { live: "https://...", code: "https://..." } (optional)
  *   featured    true to show a "Featured" badge (optional)
  */
@@ -29,6 +32,8 @@ window.PROJECTS = [
     ],
     tech: ["ArcGIS JS API 4.x", "React", "TypeScript", "Node.js", "3D"],
     videos: ["https://presentation-show.s3.us-east-1.amazonaws.com/platform.mp4"],
+    preview: ["assets/projects/mewa/preview.webm", "assets/projects/mewa/preview.mp4"],
+    poster: "assets/projects/mewa/preview-poster.jpg",
     images: [
       "assets/projects/mewa/dam-break-dashboard.jpg",
       "assets/projects/mewa/treated-water-dashboard.jpg",
