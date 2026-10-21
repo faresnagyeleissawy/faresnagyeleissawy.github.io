@@ -328,3 +328,13 @@ body {
 .js .project.reveal, .js .skill-card.reveal { transition: opacity .9s var(--ease), transform .7s var(--ease), border-color .4s, box-shadow .5s var(--ease); transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s; }
 .js .project.reveal.in:hover { transform: translateY(-6px); }
 .js .skill-card.reveal.in:hover { transform: translateY(-4px); }
+
+/* Video in project viewer */
+.m-vid { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.m-vid[hidden] { display: none; }
+.m-vid video { max-width: 100%; max-height: 100%; background: #000; }
+.m-vid iframe { width: 100%; height: 100%; border: 0; }
+.m-media img[hidden] { display: none; }
+.m-thumbs button.vid { display: grid; place-items: center; background: #0b0f0e; color: #fff; font-size: 18px; }
+.cover .play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; display: grid; place-items: center; padding-left: 4px; background: rgba(0,0,0,.55); color: #fff; font-size: 20px; backdrop-filter: blur(4px); transition: transform .4s var(--ease), background .3s; }
+.project:hover .cover .play { transform: scale(1.1); background: var(--accent); }

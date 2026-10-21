@@ -36,8 +36,9 @@
 
   function card(p, i) {
     const imgs = p.images || [];
+    const vids = (p.videos || []).length;
     const cover = imgs.length
-      ? `<div class="cover"><img src="${esc(imgs[0])}" alt="${esc(p.title)} screenshot" loading="lazy" />${imgs.length > 1 ? `<span class="count">${imgs.length} images</span>` : ""}</div>`
+      ? `<div class="cover"><img src="${esc(imgs[0])}" alt="${esc(p.title)} screenshot" loading="lazy" />${imgs.length > 1 ? `<span class="count">${imgs.length} images</span>` : ""}${vids ? `<span class="play" aria-hidden="true">▶</span>` : ""}</div>`
       : `<div class="cover placeholder" aria-hidden="true"><span>${esc(p.title.split(" ").map((w) => w[0]).join("").slice(0, 3))}</span></div>`;
     const hl = (p.highlights || []).length ? `<ul>${p.highlights.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>` : "";
     const tech = (p.tech || []).map((t) => `<span class="chip">${esc(t)}</span>`).join("");
@@ -113,25 +114,45 @@
   const mThumbs = document.getElementById("mThumbs");
   let cur = null, idx = 0, lastFocus = null;
 
+  const mVid = document.getElementById("mVid");
+  // Videos come first, then screenshots
+  const mediaOf = (p) => [...(p.videos || []), ...(p.images || [])];
+  const isVideo = (src) => /\.(mp4|webm|mov)(\?|$)/i.test(src) || embedUrl(src);
+  function embedUrl(src) {
+    let m = src.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+    if (m) return `https://www.youtube-nocookie.com/embed/${m[1]}?autoplay=1&rel=0`;
+    m = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return `https://player.vimeo.com/video/${m[1]}?autoplay=1`;
+    return null;
+  }
   function show() {
-    const imgs = cur.images || [];
+    const imgs = mediaOf(cur);
     mMedia.hidden = !imgs.length;
     mThumbs.hidden = imgs.length < 2;
+    mVid.innerHTML = "";
     if (!imgs.length) return;
-    mImg.src = imgs[idx];
-    if (!reduce) mImg.animate([{ opacity: 0, transform: "scale(.985)" }, { opacity: 1, transform: "none" }], { duration: 420, easing: "cubic-bezier(.2,.7,.2,1)" });
+    const src = imgs[idx], emb = embedUrl(src);
+    mImg.hidden = isVideo(src);
+    mVid.hidden = !mImg.hidden;
+    if (emb) mVid.innerHTML = `<iframe src="${esc(emb)}" title="${esc(cur.title)} video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    else if (mImg.hidden) mVid.innerHTML = `<video src="${esc(src)}" controls autoplay muted playsinline></video>`;
+    else mImg.src = src;
+    const el = mImg.hidden ? mVid : mImg;
+    if (!reduce) el.animate([{ opacity: 0, transform: "scale(.985)" }, { opacity: 1, transform: "none" }], { duration: 420, easing: "cubic-bezier(.2,.7,.2,1)" });
     mImg.alt = `${cur.title} screenshot ${idx + 1}`;
     mCount.textContent = imgs.length > 1 ? `${idx + 1} / ${imgs.length}` : "";
     mMedia.classList.toggle("single", imgs.length < 2);
     mThumbs.querySelectorAll("button").forEach((t, j) => t.classList.toggle("on", j === idx));
   }
   function step(d) {
-    const n = (cur.images || []).length;
+    const n = mediaOf(cur).length;
     if (n > 1) { idx = (idx + d + n) % n; show(); }
   }
   function open(i) {
     cur = projects[i]; idx = 0; lastFocus = document.activeElement;
-    mThumbs.innerHTML = (cur.images || []).map((src, j) => `<button data-j="${j}" aria-label="Image ${j + 1}"><img src="${esc(src)}" alt="" /></button>`).join("");
+    mThumbs.innerHTML = mediaOf(cur).map((src, j) => isVideo(src)
+      ? `<button data-j="${j}" class="vid" aria-label="Video ${j + 1}"><span>▶</span></button>`
+      : `<button data-j="${j}" aria-label="Image ${j + 1}"><img src="${esc(src)}" alt="" /></button>`).join("");
     document.getElementById("mBody").innerHTML = details(cur);
     show();
     modal.hidden = false; document.body.style.overflow = "hidden";
@@ -141,6 +162,7 @@
     if (modal.hidden || modal.classList.contains("closing")) return;
     const done = () => {
       modal.classList.remove("closing");
+      mVid.innerHTML = "";
       modal.hidden = true; document.body.style.overflow = "";
       if (lastFocus) lastFocus.focus();
     };
