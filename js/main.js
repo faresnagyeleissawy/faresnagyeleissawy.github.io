@@ -197,7 +197,7 @@
   });
 
   // Static reveals
-  document.querySelectorAll(".section-title, .prose p, .skill-card, .edu > div, .contact .lead, .contact-links").forEach((el, n) => {
+  document.querySelectorAll(".section-title, .portrait, .prose p, .skill-card, .edu > div, .contact .lead, .contact-links").forEach((el, n) => {
     el.classList.add("reveal"); observe(el);
   });
   document.querySelectorAll(".skills-grid .skill-card").forEach((el, n) => el.style.setProperty("--d", `${(n % 3) * 0.08}s`));

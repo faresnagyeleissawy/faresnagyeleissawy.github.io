@@ -338,3 +338,14 @@ body {
 .m-thumbs button.vid { display: grid; place-items: center; background: #0b0f0e; color: #fff; font-size: 18px; }
 .cover .play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; display: grid; place-items: center; padding-left: 4px; background: rgba(0,0,0,.55); color: #fff; font-size: 20px; backdrop-filter: blur(4px); transition: transform .4s var(--ease), background .3s; }
 .project:hover .cover .play { transform: scale(1.1); background: var(--accent); }
+
+/* Portrait */
+.portrait { margin: 40px 0 0; max-width: 300px; }
+.portrait-frame { position: relative; border-radius: 16px; }
+.portrait-frame::before { content: ""; position: absolute; inset: 0; border: 1.5px solid var(--accent); border-radius: 16px; transform: translate(12px, 12px); transition: transform .6s var(--ease); z-index: 0; }
+.portrait-frame::after { content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none; z-index: 2; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.18)); }
+.portrait img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; box-shadow: var(--shadow); transition: transform .6s var(--ease); }
+.portrait:hover img { transform: translate(-4px, -4px); }
+.portrait:hover .portrait-frame::before { transform: translate(16px, 16px); }
+.portrait figcaption { margin-top: 22px; font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+@media (max-width: 760px) { .portrait { max-width: 240px; margin-top: 28px; } }
