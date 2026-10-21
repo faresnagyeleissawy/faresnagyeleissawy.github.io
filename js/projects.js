@@ -74,9 +74,16 @@ window.PROJECTS = [
     tagline: "Global building identification mobile app",
     description:
       "Assigns a permanent, unique 16-digit code to every 3D building in the world by analysing footprints, 3D geometry and spatial relationships, for emergency services, logistics, property management and urban planning.",
-    highlights: [],
+    highlights: [
+      "Building details card with QR code, height, area, floors and region",
+      "Route to any building, with 2D and 3D map views",
+    ],
     tech: ["Mobile", "Geospatial algorithms", "3D buildings"],
-    images: [],
+    images: [
+      "assets/projects/onepin/building-details.jpg",
+      "assets/projects/onepin/route-to-building.jpg",
+      "assets/projects/onepin/route-portrait.jpg",
+    ],
     links: {},
   },
   {
