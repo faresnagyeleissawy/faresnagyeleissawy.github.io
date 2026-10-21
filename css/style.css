@@ -349,3 +349,38 @@ body {
 .portrait:hover .portrait-frame::before { transform: translate(16px, 16px); }
 .portrait figcaption { margin-top: 22px; font-size: 12px; color: var(--muted); letter-spacing: .02em; }
 @media (max-width: 760px) { .portrait { max-width: 240px; margin-top: 28px; } }
+
+/* ---------- Projects carousel ---------- */
+body { overflow-x: clip; }
+.projects-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: -12px 0 28px; flex-wrap: wrap; }
+.projects-bar .filters { margin: 0; }
+.carousel-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.car-count { font-size: 13px; color: var(--muted); margin-right: 6px; min-width: 64px; text-align: right; }
+.car-btn { width: 44px; height: 44px; border-radius: 50%; font-size: 22px; background: var(--surface); transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease), opacity .3s; }
+.car-btn:hover:not(:disabled) { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); transform: translateY(-2px); }
+.car-btn:disabled { opacity: .35; cursor: default; }
+.projects-grid {
+  --edge: max(16px, calc((100vw - 1120px) / 2 + 20px));
+  display: flex; gap: 28px; grid-template-columns: none;
+  width: 100vw; margin-left: calc(50% - 50vw);
+  padding: 10px var(--edge) 30px; scroll-padding-inline: var(--edge);
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  scrollbar-width: none; cursor: grab;
+}
+.projects-grid::-webkit-scrollbar { display: none; }
+.projects-grid.dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.projects-grid.dragging .project { pointer-events: none; }
+.projects-grid > .project { flex: 0 0 min(600px, 86vw); scroll-snap-align: start; }
+.projects-grid .cover { aspect-ratio: 16 / 10; }
+.projects-grid .project .body { padding: 24px 28px 28px; }
+.projects-grid .project h3 { font-size: 22px; }
+.projects-grid .project p { font-size: 16px; }
+.projects-grid .project ul { font-size: 15px; }
+.car-track { position: relative; height: 3px; border-radius: 3px; background: var(--line); margin-top: 4px; overflow: hidden; }
+.car-track span { position: absolute; top: 0; bottom: 0; left: 0; width: 30%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), #60a5fa); transition: left .25s ease-out, width .3s; }
+@media (max-width: 760px) {
+  .projects-grid { gap: 16px; }
+  .projects-grid .project .body { padding: 20px; }
+  .projects-grid .project h3 { font-size: 19px; }
+  .car-count { display: none; }
+}

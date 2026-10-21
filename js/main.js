@@ -76,6 +76,55 @@
       </div>`;
   }
 
+  // Horizontal carousel
+  const carPrev = document.getElementById("carPrev");
+  const carNext = document.getElementById("carNext");
+  const carBar = document.getElementById("carBar");
+  const carCount = document.getElementById("carCount");
+  let dragged = false;
+  function stepSize() {
+    const c = grid.querySelector(".project");
+    return c ? c.getBoundingClientRect().width + parseFloat(getComputedStyle(grid).columnGap || 24) : grid.clientWidth;
+  }
+  function updateCarousel() {
+    const max = grid.scrollWidth - grid.clientWidth;
+    const k = max > 0 ? grid.scrollLeft / max : 1;
+    carPrev.disabled = grid.scrollLeft <= 2;
+    carNext.disabled = grid.scrollLeft >= max - 2;
+    const n = grid.children.length;
+    const visible = Math.max(1, Math.round(grid.clientWidth / stepSize()));
+    carBar.style.width = `${Math.min(100, (visible / Math.max(n, 1)) * 100)}%`;
+    carBar.style.left = `${k * (100 - parseFloat(carBar.style.width))}%`;
+    const first = Math.min(n, Math.round(grid.scrollLeft / stepSize()) + 1);
+    carCount.textContent = n ? `${String(first).padStart(2, "0")} / ${String(n).padStart(2, "0")}` : "";
+  }
+  carPrev.addEventListener("click", () => grid.scrollBy({ left: -stepSize(), behavior: reduce ? "auto" : "smooth" }));
+  carNext.addEventListener("click", () => grid.scrollBy({ left: stepSize(), behavior: reduce ? "auto" : "smooth" }));
+  grid.addEventListener("scroll", () => requestAnimationFrame(updateCarousel), { passive: true });
+  addEventListener("resize", updateCarousel);
+  grid.addEventListener("keydown", (e) => {
+    if (e.target !== grid) return;
+    if (e.key === "ArrowRight") carNext.click();
+    if (e.key === "ArrowLeft") carPrev.click();
+  });
+  // Drag to scroll with a mouse
+  let down = null;
+  grid.addEventListener("pointerdown", (e) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    down = { x: e.clientX, left: grid.scrollLeft }; dragged = false;
+  });
+  addEventListener("pointermove", (e) => {
+    if (!down) return;
+    const dx = e.clientX - down.x;
+    if (!dragged && Math.abs(dx) > 6) { dragged = true; grid.classList.add("dragging"); }
+    if (dragged) grid.scrollLeft = down.left - dx;
+  });
+  addEventListener("pointerup", () => {
+    if (!down) return;
+    down = null; grid.classList.remove("dragging");
+    setTimeout(() => (dragged = false), 0);
+  });
+
   let active = "All";
   function render() {
     grid.innerHTML = projects
@@ -88,6 +137,8 @@
       el.style.setProperty("--d", `${(n % 3) * 0.08 + Math.floor(n / 3) * 0.04}s`);
       observe(el);
     });
+    grid.scrollLeft = 0;
+    requestAnimationFrame(updateCarousel);
   }
 
   // Filter chips: tags used by 2+ projects
@@ -174,6 +225,7 @@
   }
 
   grid.addEventListener("click", (e) => {
+    if (dragged) { e.preventDefault(); return; }
     if (e.target.closest("a")) return;
     const c = e.target.closest(".project");
     if (c) open(+c.dataset.i);

@@ -94,8 +94,16 @@
     <section id="projects" class="section alt">
       <div class="container">
         <h2 class="section-title"><span class="mono">02</span> Projects</h2>
-        <div class="filters" id="filters"></div>
+        <div class="projects-bar">
+          <div class="filters" id="filters"></div>
+          <div class="carousel-nav">
+            <span class="mono car-count" id="carCount"></span>
+            <button class="icon-btn car-btn" id="carPrev" aria-label="Previous projects">‹</button>
+            <button class="icon-btn car-btn" id="carNext" aria-label="Next projects">›</button>
+          </div>
+        </div>
         <div class="projects-grid" id="projectsGrid"></div>
+        <div class="car-track" aria-hidden="true"><span id="carBar"></span></div>
       </div>
     </section>
 
