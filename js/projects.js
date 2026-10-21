@@ -70,6 +70,20 @@ window.PROJECTS = [
     featured: true,
   },
   {
+    title: "Global Building Atlas 3D",
+    tagline: "Explore 2.75 billion buildings in 3D",
+    description:
+      "Interactive 3D viewer for the GlobalBuildingAtlas, the open dataset of building polygons, heights and LoD1 models released by the Technical University of Munich. Query and display buildings anywhere on Earth, colored by height in real time.",
+    highlights: [
+      "Queries the dataset through WFS and renders LoD1 buildings with height-based coloring",
+      "Click any building for its height, source, region and ID",
+      "Built for flood analysis, urban planning and disaster management",
+    ],
+    tech: ["ArcGIS Maps SDK", "WFS", "3D", "GeoJSON"],
+    images: ["assets/projects/building-atlas/3d-buildings.jpg"],
+    links: {},
+  },
+  {
     title: "Building Cluster Intelligence",
     tagline: "AI-powered clustering for last-mile delivery",
     description:
