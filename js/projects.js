@@ -26,7 +26,10 @@ window.PROJECTS = [
       "Time-based simulation controls to follow flood progression at any interval",
     ],
     tech: ["ArcGIS JS API 4.x", "React", "TypeScript", "Node.js", "3D"],
-    images: ["assets/projects/mewa/dam-break-dashboard.jpg"],
+    images: [
+      "assets/projects/mewa/dam-break-dashboard.jpg",
+      "assets/projects/mewa/treated-water-dashboard.jpg",
+    ],
     links: {},
     featured: true,
   },
