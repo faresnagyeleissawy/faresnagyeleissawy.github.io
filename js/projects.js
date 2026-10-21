@@ -103,9 +103,13 @@ window.PROJECTS = [
     tagline: "Real-time ETL for Amanat Al-Madinah",
     description:
       "Python sync engine that keeps ArcGIS Enterprise feature services in step with an enterprise Oracle database, type-safe, schema-safe and in real time.",
-    highlights: [],
-    tech: ["Python", "Oracle", "ArcGIS Enterprise", "ETL"],
-    images: [],
+    highlights: [
+      "Real-time change detection with Oracle database triggers and DBMS_ALERT notifications",
+      "Python sync service (SQLAlchemy, ArcGIS API for Python) with type-safe conversion matched to the ArcGIS schema",
+      "Fault-tolerant design with retry logic, error recovery, logging and monitoring",
+    ],
+    tech: ["Python", "Oracle", "ArcGIS Enterprise", "ETL", "SQLAlchemy"],
+    images: ["assets/projects/sync-engine/architecture.png"],
     links: {},
   },
   {
