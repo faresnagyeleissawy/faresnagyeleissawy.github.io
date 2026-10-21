@@ -100,6 +100,23 @@ window.PROJECTS = [
     featured: true,
   },
   {
+    title: "Point Cloud & 3D Modeling",
+    tagline: "Reality capture of an industrial power plant",
+    description:
+      "3D scan of a gas turbine power plant site, from panoramic image capture to a colorized point cloud and 3D model of the turbine unit, piping and surrounding facilities.",
+    highlights: [
+      "Panoramic capture positions registered across the whole site",
+      "Dense colorized point cloud of the turbine, stack, piping and buildings",
+    ],
+    tech: ["Point Cloud", "3D Modeling", "Reality Capture"],
+    images: [
+      "assets/projects/point-cloud/point-cloud-site.jpg",
+      "assets/projects/point-cloud/capture-positions-turbine.jpg",
+      "assets/projects/point-cloud/capture-positions-piping.jpg",
+    ],
+    links: {},
+  },
+  {
     title: "OnePin",
     tagline: "Global building identification mobile app",
     description:
