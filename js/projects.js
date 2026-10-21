@@ -137,6 +137,23 @@ window.PROJECTS = [
     links: {},
   },
   {
+    title: "BIM–GIS Integration Training",
+    tagline: "Sultan Haitham City, Oman · with Aptus Infotech · Oct 2025",
+    description:
+      "Led a two-day training program (26–27 October 2025) for Sultan Haitham City professionals on integrating Building Information Modeling and GIS, a core capability for smart, sustainable cities.",
+    highlights: [
+      "Integration concepts, interoperability and standards (IFC, CityGML, ISO 19650), plus georeferencing and coordinate alignment",
+      "Tools: Autodesk Civil 3D, InfraWorks, Revit, ArcGIS Pro & Online, FME and QGIS",
+      "Hands-on: BIM to GIS and back, and GIS analysis inside BIM (terrain, flood risk, site selection)",
+    ],
+    tech: ["BIM", "ArcGIS Pro", "Revit", "FME", "Training"],
+    images: [
+      "assets/projects/bim-gis/training-session.jpg",
+      "assets/projects/bim-gis/training-room.jpg",
+    ],
+    links: {},
+  },
+  {
     title: "Madinati Mobile GIS",
     tagline: "Public GIS app for the Eastern Province Municipality",
     description:
